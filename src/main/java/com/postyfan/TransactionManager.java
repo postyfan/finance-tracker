@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class TransactionManager {
-    private List<Transaction> transactions;
+    private final List<Transaction> transactions;
     
     public TransactionManager() {
         this.transactions = new ArrayList<>();
@@ -28,9 +28,10 @@ public class TransactionManager {
      * 
      * @return HashMap with totals of each category
      */
+
     public Map<String, Double> getTotalsByCategory() {
-        // TODO: Use HashMap to calculate totals per category
-        // Hint: Loop through transactions, use category as key
+        // Use HashMap to calculate totals per category
+        // Loop through transactions, use category as key
         Map<String, Double> categoryTotals = new HashMap<>();
 
         // Loop through all transactions
@@ -52,6 +53,15 @@ public class TransactionManager {
     }
     
     public void displaySummary() {
-        // TODO: Print nice summary of spending by category
+        // Print nice summary of spending by category
+        // Get Map of categories
+        Map<String, Double> hash = getTotalsByCategory();
+        double total = 0;
+        System.out.println("Category: $ Totals");
+        for (Map.Entry<String, Double> t : hash.entrySet()) {
+            System.out.println(t.getKey() + ": $ " + t.getValue());
+            total += t.getValue();
+        }
+        System.out.println("Overall Total: & " + total);
     }
 }
