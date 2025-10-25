@@ -1,5 +1,6 @@
-package com.anton;
+package com.postyfan;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Main {
@@ -47,9 +48,13 @@ public class Main {
     private static void addTransaction() {
         // TODO: Ask user for input and create transaction
         System.out.print("Type (income/expense): ");
-        // ... get other inputs
-        // Create Transaction object
+        String type = scanner.nextLine();
+
+        // Date is added when this transaction is made
+        LocalDateTime date = LocalDateTime.now();
+        // Create Transaction object    
         // Add to manager
+        Transaction t = new Transaction(id,date,amount,category,description,type);
         System.out.println("Transaction added!");
     }
     
