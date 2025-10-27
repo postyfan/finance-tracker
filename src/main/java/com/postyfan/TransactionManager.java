@@ -68,4 +68,24 @@ public class TransactionManager {
         }
         System.out.println("Overall Total: & " + total);
     }
+
+    /**
+     * Retrieves all transactions that belong to a specific category.
+     * 
+     * @param category The category name to filter by (case-insensitive)
+     * @return A list of transactions matching the specified category
+     */
+    public List<Transaction> getTransactionsByCategory(String category) {
+        // Create empty list to store matching transactions
+        List<Transaction> ret = new ArrayList<>();
+
+        // Iterate through all transactions
+        for (Transaction t : transactions) {
+            // Compare categories case-insensitively and add if match
+            if (t.getCategory().equalsIgnoreCase(category))
+                ret.add(t);
+        }
+        // Return the list
+        return ret;
+    }
 }
