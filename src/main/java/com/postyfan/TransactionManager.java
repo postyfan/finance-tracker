@@ -55,6 +55,10 @@ public class TransactionManager {
     public void displaySummary() {
         // Print nice summary of spending by category
         // Get Map of categories
+        if (transactions.isEmpty()) {
+            System.out.println("No transactions");
+            return;
+        }
         Map<String, Double> hash = getTotalsByCategory();
         double total = 0;
         System.out.println("Category: $ Totals");

@@ -102,6 +102,10 @@ public class Main {
     private static void viewTransactions() {
         // TODO: Display all transactions nicely
         List<Transaction> t = manager.getAllTransactions();
+        if (t.isEmpty()) {
+            System.out.println("No Transactinons");
+            return;
+        }
         int count = 1;
         for (Transaction e : t) {
             System.out.println("Transaction " + count + ": ");
