@@ -1,7 +1,5 @@
 package com.postyfan;
 
-// src/main/java/com/financetracker/TransactionManager.java
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,6 +49,33 @@ public class TransactionManager {
         // Return HashMap
         return categoryTotals;
     }
+
+    /**
+     * Gathers the total by type - income or expense
+     * 
+     * @return HashMap with totals of each type
+     */
+    public Map<String, Double> getTotalsByType() {
+        // Use HashMap to calculate totals per type
+        Map<String, Double> typeTotals = new HashMap<>();
+
+        // Loop through all transactions
+        for (Transaction t : transactions) {
+            String type = t.getType();
+            double amount = t.getAmount();
+
+            // Check if category already exists in HashMap
+            if (typeTotals.containsKey(type)) { 
+                // Add to existing total
+                typeTotals.put(type, typeTotals.get(type) + amount);
+            } else {
+                // If category is not in HashMap then it will be added
+                typeTotals.put(type,amount);
+            }
+        }
+        // Return HashMap
+        return typeTotals;
+    }
     
     public void displaySummary() {
         // Print nice summary of spending by category
@@ -66,7 +91,7 @@ public class TransactionManager {
             System.out.println(t.getKey() + ": $ " + t.getValue());
             total += t.getValue();
         }
-        System.out.println("Overall Total: & " + total);
+        System.out.println("Overall Total: $ " + total);
     }
 
     /**
