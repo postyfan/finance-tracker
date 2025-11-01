@@ -77,21 +77,37 @@ public class TransactionManager {
         return typeTotals;
     }
     
+
+    /**
+     * Displays a Summary of all Transactions
+     * Shows Total for each Categories
+     * Shows Total for each Type
+     * Shows Overall Net Total
+     */
     public void displaySummary() {
-        // Print nice summary of spending by category
-        // Get Map of categories
+        // Check if there Transactions
         if (transactions.isEmpty()) {
             System.out.println("No transactions");
             return;
         }
-        Map<String, Double> hash = getTotalsByCategory();
-        double total = 0;
-        System.out.println("Category: $ Totals");
-        for (Map.Entry<String, Double> t : hash.entrySet()) {
+        // Get Map of categories
+        Map<String, Double> categoryTotals = getTotalsByCategory();
+        double catTotal = 0, incomeTotal = 0, expenseTotal = 0;
+        // Displays Category Totals
+        System.out.println("Category: $ Amount");
+        for (Map.Entry<String, Double> t : categoryTotals.entrySet()) {
             System.out.println(t.getKey() + ": $ " + t.getValue());
-            total += t.getValue();
+            catTotal += t.getValue();
         }
-        System.out.println("Overall Total: $ " + total);
+        // Get Map of types
+        Map<String,Double> typeTotals = getTotalsByType();
+        System.out.println("\nType: $ Amount");
+        for (Map.Entry<String, Double> t : typeTotals.entrySet()){
+            System.out.println(t.getKey() + ": $ " + t.getValue());
+            incomeTotal += t.getKey().equalsIgnoreCase("Income") ? t.getValue() : 0.0;
+            expenseTotal += t.getKey().equalsIgnoreCase("Expense") ? t.getValue() : 0.0;
+        }
+        System.out.println("Net Total: $ " + (incomeTotal-expenseTotal));
     }
 
     /**

@@ -1,12 +1,15 @@
 package com.postyfan;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    private static TransactionManager manager = new TransactionManager();
-    private static Scanner scanner = new Scanner(System.in);
+    private static final TransactionManager manager = new TransactionManager();
+    private static final Scanner scanner = new Scanner(System.in);
     
     public static void main(String[] args) {
         System.out.println("Welcome to Finance Tracker!");
@@ -16,7 +19,7 @@ public class Main {
             showMenu();
             int choice = scanner.nextInt();
             scanner.nextLine(); // consume newline
-            
+            System.out.println();
             switch (choice) {
                 case 1:
                     addTransaction();
@@ -28,6 +31,9 @@ public class Main {
                     showSummary();
                     break;
                 case 4:
+                    viewTransactionsByCategory();
+                    break;
+                case 5:
                     running = false;
                     System.out.println("Goodbye!");
                     break;
@@ -42,7 +48,8 @@ public class Main {
         System.out.println("1. Add Transaction");
         System.out.println("2. View All Transactions");
         System.out.println("3. View Summary");
-        System.out.println("4. Exit");
+        System.out.println("4. View Transactions by Category");
+        System.out.println("5. Exit");
         System.out.print("Choose option: ");
     }
     
@@ -109,7 +116,7 @@ public class Main {
         int count = 1;
         for (Transaction e : t) {
             System.out.println("Transaction " + count + ": ");
-            System.out.println(e);
+            System.out.println(e + "\n");
             count++;
         }
     }
@@ -117,5 +124,34 @@ public class Main {
     private static void showSummary() {
         // TODO: Show summary by category
         manager.displaySummary();
+    }
+
+    private static void viewTransactionsByCategory() {
+        // Get List<Transaction> of all transactions
+        List<Transaction> all = manager.getAllTransactions();
+        if (all.isEmpty()) {
+            System.out.println("No Transactions");
+            return;
+        }
+        // Make HashMap to store list of transactions per category
+        // HashMap @param String -> Category
+        //         @param ArrayList<Transaction> -> List of Transactions under category
+        HashMap<String,ArrayList<Transaction>> categories = new HashMap<>();
+        // Loop though List of Transactions and add to HashMap
+        for (Transaction t : all) {
+            // Gets category of transaction object and assigns to String ctg
+            String ctg = t.getCategory();
+            // Create list if missing then add
+            categories.computeIfAbsent(ctg, k -> new ArrayList<>()).add(t);
+        }
+        // Print Transactions by each category
+        // Iterate over HashMap categories
+        for (Map.Entry<String,ArrayList<Transaction>> entry : categories.entrySet()) {
+            System.out.println("Category: " + entry.getKey());
+            // Iterate over the ArrayList and print out values
+            for (Transaction t : entry.getValue())
+                System.out.println(t);
+        }
+        System.out.println();
     }
 }

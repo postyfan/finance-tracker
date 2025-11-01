@@ -52,12 +52,12 @@ public final class Transaction {
     public String toString() {
         DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String formattedDate = this.getDate().format(myFormatDate);
-        return "Transsaction ID: " + this.getID() +
+        return "Type: " + this.getType() +
+                "\nTranssaction ID: " + this.getID() +
                 "\nDate: " + formattedDate + 
                 "\nAmount: " + this.getAmount() +
                 "\nCategory: " + this.getCategory() + 
-                "\nDescription: " + this.getDescription() +
-                "\nType: " + this.getType();
+                "\nDescription: " + this.getDescription();
     }
     public static void main(String[] args) {
         // Test your class here
