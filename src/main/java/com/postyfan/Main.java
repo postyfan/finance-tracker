@@ -110,7 +110,7 @@ public class Main {
         // TODO: Display all transactions nicely
         List<Transaction> t = manager.getAllTransactions();
         if (t.isEmpty()) {
-            System.out.println("No Transactinons");
+            System.out.println("No Transactions");
             return;
         }
         int count = 1;

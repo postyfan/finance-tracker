@@ -16,8 +16,6 @@ public final class Transaction {
     public Transaction (LocalDateTime date, double amount, String category, String description, String type) {
         this.id = UUID.randomUUID().toString();
         this.date = date;
-        if (amount < 0)
-            throw new IllegalArgumentException("Amount must be greater than 0");
         this.amount = amount;
         this.category = category;
         this.description = description;
@@ -53,7 +51,7 @@ public final class Transaction {
         DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String formattedDate = this.getDate().format(myFormatDate);
         return "Type: " + this.getType() +
-                "\nTranssaction ID: " + this.getID() +
+                "\nTransaction ID: " + this.getID() +
                 "\nDate: " + formattedDate + 
                 "\nAmount: " + this.getAmount() +
                 "\nCategory: " + this.getCategory() + 
