@@ -5,12 +5,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 public final class Transaction {
-    private String id;
-    private LocalDateTime date;
-    private double amount;
-    private String category;
-    private String description;
-    private String type; // "income" or "expense"
+    private final String id;
+    private final LocalDateTime date;
+    private final double amount;
+    private final String category;
+    private final String description;
+    private final String type; // "income" or "expense"
     
     // TODO: Add constructor
     public Transaction (LocalDateTime date, double amount, String category, String description, String type) {
