@@ -53,3 +53,9 @@ transactions.json
 
 # Test output
 test-output/
+
+# JSON files
+*.json
+
+# MD files
+todo.md

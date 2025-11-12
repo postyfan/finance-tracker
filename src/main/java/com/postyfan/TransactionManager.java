@@ -1,5 +1,6 @@
 package com.postyfan;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,14 +8,18 @@ import java.util.Map;
 
 public class TransactionManager {
     private final List<Transaction> transactions;
+    private final FileManager fileManager;
     
     public TransactionManager() {
-        this.transactions = new ArrayList<>();
+        fileManager = new FileManager();
+        this.transactions = fileManager.loadTransactions();
     }
     
     public void addTransaction(Transaction t) {
         // TODO: Add transaction to list
         transactions.add(t);
+        // Saves afer Transaction is added
+        fileManager.saveTransactions(transactions);
     }
     
     public List<Transaction> getAllTransactions() {
@@ -23,7 +28,6 @@ public class TransactionManager {
     }
     
     /**
-     * 
      * @return HashMap with totals of each category
      */
 
@@ -52,7 +56,6 @@ public class TransactionManager {
 
     /**
      * Gathers the total by type - income or expense
-     * 
      * @return HashMap with totals of each type
      */
     public Map<String, Double> getTotalsByType() {
@@ -92,27 +95,26 @@ public class TransactionManager {
         }
         // Get Map of categories
         Map<String, Double> categoryTotals = getTotalsByCategory();
-        double catTotal = 0, incomeTotal = 0, expenseTotal = 0;
+        double incomeTotal = 0, expenseTotal = 0;
         // Displays Category Totals
         System.out.println("Category: $ Amount");
         for (Map.Entry<String, Double> t : categoryTotals.entrySet()) {
             System.out.println(t.getKey() + ": $ " + t.getValue());
-            catTotal += t.getValue();
         }
+
         // Get Map of types
         Map<String,Double> typeTotals = getTotalsByType();
         System.out.println("\nType: $ Amount");
         for (Map.Entry<String, Double> t : typeTotals.entrySet()){
-            System.out.println(t.getKey() + ": $ " + t.getValue());
+            System.out.println(t.getKey() + ": $ " + String.format("%.2f", t.getValue()));
             incomeTotal += t.getKey().equalsIgnoreCase("Income") ? t.getValue() : 0.0;
             expenseTotal += t.getKey().equalsIgnoreCase("Expense") ? t.getValue() : 0.0;
         }
-        System.out.println("Net Total: $ " + (incomeTotal-expenseTotal));
+        System.out.println("Net Total: $ " + String.format("%.2f",(incomeTotal-expenseTotal)));
     }
 
     /**
      * Retrieves all transactions that belong to a specific category.
-     * 
      * @param category The category name to filter by (case-insensitive)
      * @return A list of transactions matching the specified category
      */

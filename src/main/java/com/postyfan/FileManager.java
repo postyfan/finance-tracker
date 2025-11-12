@@ -33,10 +33,10 @@ public class FileManager {
         // Use FILE_PATH as the filename
         try (FileWriter writer = new FileWriter(FILE_PATH)) {
             writer.write(json);
-            System.out.println("Transactions saved successfully.");
+            System.out.println("Transactions saved successfully!");
         } catch (IOException e) {
              // TODO: Add catch block for IOException and print error
-            System.out.println("Error Occured! " + e);
+            System.err.println("Error saving transaction! " + e.getMessage());
         }
     }
     
@@ -47,6 +47,13 @@ public class FileManager {
     public List<Transaction> loadTransactions() {
         // TODO: Check if file exists using File class
         // If file doesn't exist, return new empty ArrayList
+
+        File file = new File(FILE_PATH);
+        if (!file.exists()) {
+            System.out.println("File does not exist.");
+            return new ArrayList<>();
+        }
+        // Now read file
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             // TODO: Read file content as String using BufferedReader
 
@@ -62,12 +69,12 @@ public class FileManager {
             String json = builder.toString();
             Type listType = new TypeToken<ArrayList<Transaction>>(){}.getType();
             ArrayList<Transaction> ret = gson.fromJson(json, listType);
-            System.out.println("Transactions saved successfully.");
+            System.out.println(ret.size() + " Transactions loaded successfully.");
             return ret;
         } catch (IOException e) {
             // TODO: Add catch block for IOException
             // If error occurs, return empty ArrayList
-            System.out.println("Error Occured! " + e);
+            System.err.println("Error loading transaction! " + e.getMessage());
             return new ArrayList<>();
         }
         

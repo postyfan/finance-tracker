@@ -2,5 +2,6 @@
     "java.debug.settings.onBuildFailureProceed": true,
     "java.configuration.updateBuildConfiguration": "interactive",
     "chatgpt.commentCodeLensEnabled": false,
-    "editor.codeLens": false
+    "editor.codeLens": false,
+    "workbench.colorCustomizations": {}
 }

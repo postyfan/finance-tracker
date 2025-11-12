@@ -8,3 +8,5 @@ com/postyfan/FileIOTest.class
 com/postyfan/GsonTest.class
 com/postyfan/Main.class
 com/postyfan/FileQuickTest.class
+com/postyfan/FileManager.class
+com/postyfan/FileManager$1.class

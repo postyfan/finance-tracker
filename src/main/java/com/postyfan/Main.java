@@ -103,7 +103,6 @@ public class Main {
         // Add to manager
         Transaction t = new Transaction(date,amount,category,description,type);
         manager.addTransaction(t);
-        System.out.println("Transaction added!");
     }
     
     private static void viewTransactions() {
@@ -151,6 +150,7 @@ public class Main {
             // Iterate over the ArrayList and print out values
             for (Transaction t : entry.getValue())
                 System.out.println(t);
+            System.out.println("");
         }
         System.out.println();
     }
