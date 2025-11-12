@@ -5,8 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 public final class Transaction {
-    private final String id;
-    private final LocalDateTime date;
+    private String id;
+    private LocalDateTime date;
     private final double amount;
     private final String category;
     private final String description;
@@ -25,9 +25,17 @@ public final class Transaction {
     public String getID() {
         return this.id;
     }
+
+    public void setID(String id) {
+        this.id = id;
+    }
  
     public LocalDateTime getDate() {
         return this.date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
     
     public double getAmount() {
@@ -45,6 +53,7 @@ public final class Transaction {
     public String getType() {
         return this.type;
     }
+
     // TODO: Add toString() method
     @Override
     public String toString() {

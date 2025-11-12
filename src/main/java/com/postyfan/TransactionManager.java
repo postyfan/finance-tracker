@@ -131,7 +131,7 @@ public class TransactionManager {
             incomeTotal += t.getKey().equalsIgnoreCase("Income") ? t.getValue() : 0.0;
             expenseTotal += t.getKey().equalsIgnoreCase("Expense") ? t.getValue() : 0.0;
         }
-        System.out.println("Net Total: $ " + String.format("%.2f",(incomeTotal-expenseTotal)));
+        System.out.println("Net Total: $ " + String.format("%.2f",(incomeTotal-expenseTotal)) + "\n");
     }
 
     /**
@@ -169,5 +169,58 @@ public class TransactionManager {
             if (t.getID().substring(0,8).equals(id))
                 System.out.println(t + "\n");
         }
+    }
+
+    /**
+     * Updates a transaction by ID
+     * @param id The transaction ID to update
+     * @param updatedTransaction The new transaction data
+     * @return true if updated, false if not found
+     */
+    public boolean updateTransaction(String id, Transaction updatedTransaction) {
+        // TODO: Find the transaction by ID (compare first 8 chars)
+        Transaction matchedTransaction = getTransactionByID(id);
+        if (matchedTransaction != null) {
+            // TODO: If found, replace the old transaction with updated one
+            // Replace updatedTransaction param to match id and date of corrected transaction
+            updatedTransaction.setID(matchedTransaction.getID());
+            updatedTransaction.setDate(matchedTransaction.getDate());
+            transactions.set(getIndexByID(id), updatedTransaction);
+
+            // Save to file after updating
+            fileManager.saveTransactions(transactions);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Finds a transaction by ID
+     * @param id The shortened transaction ID (8 chars)
+     * @return The transaction if found, null if not found
+     */
+    public Transaction getTransactionByID(String id) {
+        // TODO: Loop through transactions
+        // TODO: If ID matches (first 8 chars), return that transaction
+        // TODO: If loop completes without finding, return null
+        for (int i = 0; i < transactions.size(); i++) {
+            if (transactions.get(i).getID().substring(0,8).equals(id)) {
+                return transactions.get(i);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Finds index of transaction by ID
+     * @param id shortened transaction ID
+     * @return The index if found, -1 if not found
+     */
+    public int getIndexByID(String id) {
+        for (int i = 0; i < transactions.size(); i++) {
+            if (transactions.get(i).getID().substring(0,8).equals(id))
+                return i;
+        }
+        return -1;
     }
 }
