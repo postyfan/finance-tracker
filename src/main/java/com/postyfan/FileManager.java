@@ -33,7 +33,7 @@ public class FileManager {
         // Use FILE_PATH as the filename
         try (FileWriter writer = new FileWriter(FILE_PATH)) {
             writer.write(json);
-            System.out.println("Transactions saved successfully!");
+            System.out.println("Changes saved successfully!");
         } catch (IOException e) {
              // TODO: Add catch block for IOException and print error
             System.err.println("Error saving transaction! " + e.getMessage());

@@ -51,7 +51,7 @@ public final class Transaction {
         DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String formattedDate = this.getDate().format(myFormatDate);
         return "Type: " + this.getType() +
-                "\nTransaction ID: " + this.getID() +
+                "\nTransaction ID: " + this.getID().substring(0,8) +
                 "\nDate: " + formattedDate + 
                 "\nAmount: " + this.getAmount() +
                 "\nCategory: " + this.getCategory() + 

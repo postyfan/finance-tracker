@@ -21,6 +21,27 @@ public class TransactionManager {
         // Saves afer Transaction is added
         fileManager.saveTransactions(transactions);
     }
+
+    /**
+     * Deletes a transaction by its ID
+     * @param id The transaction ID to delete
+     * @return true if deleted, false if not found
+     */
+    public boolean deleteTransaction(String id) {
+        // TODO: Loop through transactions to find matching ID
+        // Remove the transaction if found
+        // Hint: You can use transactions.removeIf() with a lambda
+        // Or use a traditional for loop with iterator
+        boolean removed = transactions.removeIf(t -> t.getID().substring(0, 8).equals(id));
+
+        // TODO: If transaction was removed, save to file   
+        if (removed)
+            fileManager.saveTransactions(transactions);
+
+        // TODO: Return true if found and deleted, false if not found
+        return removed;
+    
+}
     
     public List<Transaction> getAllTransactions() {
         // TODO: Return all transactions    
@@ -130,5 +151,23 @@ public class TransactionManager {
         }
         // Return the list
         return ret;
+    }
+
+    /**
+     * @return size of transactions list
+     */
+    public int size() {
+        return transactions.size();
+    }
+
+    /**
+     * displays transaction by ID
+     * @param String id
+     */
+    public void printByID(String id) {
+        for (Transaction t : transactions) {
+            if (t.getID().substring(0,8).equals(id))
+                System.out.println(t + "\n");
+        }
     }
 }

@@ -25,15 +25,18 @@ public class Main {
                     addTransaction();
                     break;
                 case 2:
-                    viewTransactions();
+                    deleteTransaction();
                     break;
                 case 3:
-                    showSummary();
+                    viewTransactions();
                     break;
                 case 4:
-                    viewTransactionsByCategory();
+                    showSummary();
                     break;
                 case 5:
+                    viewTransactionsByCategory();
+                    break;
+                case 6:
                     running = false;
                     System.out.println("Goodbye!");
                     break;
@@ -46,10 +49,11 @@ public class Main {
     private static void showMenu() {
         System.out.println("\n--- Menu ---");
         System.out.println("1. Add Transaction");
-        System.out.println("2. View All Transactions");
-        System.out.println("3. View Summary");
-        System.out.println("4. View Transactions by Category");
-        System.out.println("5. Exit");
+        System.out.println("2. Delete Transaction");
+        System.out.println("3. View All Transactions");
+        System.out.println("4. View Summary");
+        System.out.println("5. View Transactions by Category");
+        System.out.println("6. Exit");
         System.out.print("Choose option: ");
     }
     
@@ -115,7 +119,10 @@ public class Main {
         int count = 1;
         for (Transaction e : t) {
             System.out.println("Transaction " + count + ": ");
-            System.out.println(e + "\n");
+            System.out.println("ID: " + e.getID().substring(0, 8));
+            System.out.println("Date: " + e.getDate());
+            System.out.println("Amount: " + e.getAmount());
+            System.out.println("Type: " + e.getType() + '\n');
             count++;
         }
     }
@@ -153,5 +160,44 @@ public class Main {
             System.out.println("");
         }
         System.out.println();
+    }
+
+    private static void deleteTransaction() {
+        // TODO: Check if there are any transactions
+        // If empty, print message and return
+        if (manager.size() == 0) {
+            System.out.println("There are no transactions");
+            return;
+        }
+        // TODO: Show all transactions with their IDs
+        // Make it easy for user to see which ID to delete
+        // Hint: Call viewTransactions() or make a simpler version
+        viewTransactions();
+        
+        System.out.print("\nEnter transaction ID to delete: ");
+        // TODO: Get ID from user input
+        String choice = scanner.next();
+        scanner.nextLine();
+
+        // Make sure user wants to delete this
+        System.out.println("\n");
+        manager.printByID(choice);
+        System.out.print("Are you sure you want to delete this? (yes/no): ");
+        String confirm = scanner.nextLine();
+        if (confirm .equalsIgnoreCase("no")) {
+            System.out.println("\nDeletion aborted.");
+            return;
+        }
+        // TODO: Call manager.deleteTransaction(id)
+        // Store the result (true/false)
+        boolean deleted = manager.deleteTransaction(choice);
+        
+        // TODO: If result is true, print success message
+        // If false, print "Transaction not found" message
+        if (deleted)
+            System.out.println("Succesfully Deleted.");
+        else   
+            System.out.println("Transaction not found.");
+        
     }
 }
