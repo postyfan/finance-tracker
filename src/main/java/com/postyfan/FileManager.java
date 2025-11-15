@@ -26,16 +26,16 @@ public class FileManager {
      * @param transactions The list to save
      */
     public void saveTransactions(List<Transaction> transactions) {
-        // TODO: Convert transactions list to JSON string
+        // Convert transactions list to JSON string
         String json = gson.toJson(transactions);
         
-        // TODO: Write JSON string to file using try-with-resources
+        // Write JSON string to file using try-with-resources
         // Use FILE_PATH as the filename
         try (FileWriter writer = new FileWriter(FILE_PATH)) {
             writer.write(json);
             System.out.println("Changes saved successfully!");
         } catch (IOException e) {
-             // TODO: Add catch block for IOException and print error
+             // Add catch block for IOException and print error
             System.err.println("Error saving transaction! " + e.getMessage());
         }
     }
@@ -45,7 +45,7 @@ public class FileManager {
      * @return List of transactions, or empty list if file doesn't exist/error
      */
     public List<Transaction> loadTransactions() {
-        // TODO: Check if file exists using File class
+        // Check if file exists using File class
         // If file doesn't exist, return new empty ArrayList
 
         File file = new File(FILE_PATH);
@@ -55,7 +55,7 @@ public class FileManager {
         }
         // Now read file
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            // TODO: Read file content as String using BufferedReader
+            // Read file content as String using BufferedReader
 
             String line;
             StringBuilder builder = new StringBuilder();
@@ -64,15 +64,15 @@ public class FileManager {
                 // Use StringBuilder to build the full JSON string (like in Exercise 3)
                 builder.append(line);
             }
-            // TODO: Convert JSON string to List<Transaction> using TypeToken
-            // TODO: Return the loaded list
+            // Convert JSON string to List<Transaction> using TypeToken
+            // Return the loaded list
             String json = builder.toString();
             Type listType = new TypeToken<ArrayList<Transaction>>(){}.getType();
             ArrayList<Transaction> ret = gson.fromJson(json, listType);
             System.out.println(ret.size() + " Transactions loaded successfully.");
             return ret;
         } catch (IOException e) {
-            // TODO: Add catch block for IOException
+            // Add catch block for IOException
             // If error occurs, return empty ArrayList
             System.err.println("Error loading transaction! " + e.getMessage());
             return new ArrayList<>();

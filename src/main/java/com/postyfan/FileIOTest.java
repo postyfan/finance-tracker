@@ -9,7 +9,7 @@ public class FileIOTest {
         // PART 1: Write to file
         System.out.println("=== Writing to file ===");
         
-        // TODO: Use try-with-resources to create a FileWriter
+        // Use try-with-resources to create a FileWriter
         // Syntax: try (FileWriter writer = new FileWriter(filename)) { }
         // Inside the try block:
         //   - Write 3 lines to the file using writer.write()
@@ -30,7 +30,7 @@ public class FileIOTest {
         // PART 2: Read from file
         System.out.println("\n=== Reading from file ===");
         
-        // TODO: Use try-with-resources to create a BufferedReader
+        // Use try-with-resources to create a BufferedReader
         // Syntax: try (BufferedReader reader = new BufferedReader(new FileReader(filename))) { }
         // Inside the try block:
         //   - Create a loop that reads lines until null
@@ -52,13 +52,13 @@ public class FileIOTest {
         // PART 3: Check file properties
         System.out.println("\n=== File Info ===");
         
-        // TODO: Create a File object with the filename
+        // Create a File object with the filename
         File file = new File("file.txt");
-        // TODO: Check if file exists using .exists()
+        // Check if file exists using .exists()
         boolean fileExists = file.exists();
-        // TODO: Get file size using .length()
+        // Get file size using .length()
         long size = file.length();
-        // TODO: Print both pieces of information
+        // Print both pieces of information
         System.err.println("File Exists: " + fileExists + "Size: " + size);
         
     }

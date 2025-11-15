@@ -12,7 +12,7 @@ public final class Transaction {
     private final String description;
     private final String type; // "income" or "expense"
     
-    // TODO: Add constructor
+    // Add constructor
     public Transaction (LocalDateTime date, double amount, String category, String description, String type) {
         this.id = UUID.randomUUID().toString();
         this.date = date;
@@ -21,7 +21,7 @@ public final class Transaction {
         this.description = description;
         this.type = type;
     }
-    // TODO: Add getters and setters
+    // Add getters and setters
     public String getID() {
         return this.id;
     }
@@ -54,7 +54,7 @@ public final class Transaction {
         return this.type;
     }
 
-    // TODO: Add toString() method
+    // Add toString() method
     @Override
     public String toString() {
         DateTimeFormatter myFormatDate = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");

@@ -16,7 +16,7 @@ public class TransactionManager {
     }
     
     public void addTransaction(Transaction t) {
-        // TODO: Add transaction to list
+        // Add transaction to list
         transactions.add(t);
         // Saves afer Transaction is added
         fileManager.saveTransactions(transactions);
@@ -28,23 +28,23 @@ public class TransactionManager {
      * @return true if deleted, false if not found
      */
     public boolean deleteTransaction(String id) {
-        // TODO: Loop through transactions to find matching ID
+        // Loop through transactions to find matching ID
         // Remove the transaction if found
         // Hint: You can use transactions.removeIf() with a lambda
         // Or use a traditional for loop with iterator
         boolean removed = transactions.removeIf(t -> t.getID().substring(0, 8).equals(id));
 
-        // TODO: If transaction was removed, save to file   
+        // If transaction was removed, save to file   
         if (removed)
             fileManager.saveTransactions(transactions);
 
-        // TODO: Return true if found and deleted, false if not found
+        // Return true if found and deleted, false if not found
         return removed;
     
 }
     
     public List<Transaction> getAllTransactions() {
-        // TODO: Return all transactions    
+        // Return all transactions    
         return transactions;
     }
     
@@ -178,10 +178,10 @@ public class TransactionManager {
      * @return true if updated, false if not found
      */
     public boolean updateTransaction(String id, Transaction updatedTransaction) {
-        // TODO: Find the transaction by ID (compare first 8 chars)
+        // Find the transaction by ID (compare first 8 chars)
         Transaction matchedTransaction = getTransactionByID(id);
         if (matchedTransaction != null) {
-            // TODO: If found, replace the old transaction with updated one
+            // If found, replace the old transaction with updated one
             // Replace updatedTransaction param to match id and date of corrected transaction
             updatedTransaction.setID(matchedTransaction.getID());
             updatedTransaction.setDate(matchedTransaction.getDate());
@@ -200,9 +200,9 @@ public class TransactionManager {
      * @return The transaction if found, null if not found
      */
     public Transaction getTransactionByID(String id) {
-        // TODO: Loop through transactions
-        // TODO: If ID matches (first 8 chars), return that transaction
-        // TODO: If loop completes without finding, return null
+        // Loop through transactions
+        // If ID matches (first 8 chars), return that transaction
+        // If loop completes without finding, return null
         for (int i = 0; i < transactions.size(); i++) {
             if (transactions.get(i).getID().substring(0,8).equals(id)) {
                 return transactions.get(i);

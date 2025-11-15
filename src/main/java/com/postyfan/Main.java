@@ -62,7 +62,7 @@ public class Main {
     }
     
     private static void addTransaction() {
-        // TODO: Ask user for input and create transaction
+        // Ask user for input and create transaction
         System.out.print("Type (Income/Expense): ");
         String type = scanner.nextLine();
         type = type.substring(0,1).toUpperCase() + type.substring(1).toLowerCase();
@@ -114,7 +114,7 @@ public class Main {
     }
     
     private static void viewTransactions() {
-        // TODO: Display all transactions nicely
+        // Display all transactions nicely
         List<Transaction> t = manager.getAllTransactions();
         if (t.isEmpty()) {
             System.out.println("No Transactions");
@@ -126,7 +126,7 @@ public class Main {
     }
     
     private static void showSummary() {
-        // TODO: Show summary by category
+        // Show summary by category
         manager.displaySummary();
     }
 
@@ -161,19 +161,19 @@ public class Main {
     }
 
     private static void deleteTransaction() {
-        // TODO: Check if there are any transactions
+        // Check if there are any transactions
         // If empty, print message and return
         if (manager.size() == 0) {
             System.out.println("There are no transactions");
             return;
         }
-        // TODO: Show all transactions with their IDs
+        // Show all transactions with their IDs
         // Make it easy for user to see which ID to delete
         // Hint: Call viewTransactions() or make a simpler version
         viewTransactions();
         
         System.out.print("\nEnter transaction ID to delete: ");
-        // TODO: Get ID from user input
+        // Get ID from user input
         String choice = scanner.next();
         scanner.nextLine();
 
@@ -186,11 +186,11 @@ public class Main {
             System.out.println("\nDeletion aborted.");
             return;
         }
-        // TODO: Call manager.deleteTransaction(id)
+        // Call manager.deleteTransaction(id)
         // Store the result (true/false)
         boolean deleted = manager.deleteTransaction(choice);
         
-        // TODO: If result is true, print success message
+        // If result is true, print success message
         // If false, print "Transaction not found" message
         if (deleted)
             System.out.println("Successfully Deleted.");
@@ -200,35 +200,35 @@ public class Main {
     }
 
     private static void editTransaction() {
-        // TODO: Check if there are any transactions
+        // Check if there are any transactions
         // If empty, print message and return
         if (manager.size() == 0){
             System.out.println("No Transactions.");
             return;
         }
-        // TODO: Show all transactions with their IDs
+        // Show all transactions with their IDs
         viewTransactions();
 
         System.out.print("Enter transaction ID to edit: ");
-        // TODO: Get ID from user
+        // Get ID from user
         String id = scanner.nextLine();
         
-        // TODO: Find the transaction using manager.getTransactionByID(id)
-        // TODO: If null, print "Transaction not found" and return
+        // Find the transaction using manager.getTransactionByID(id)
+        // If null, print "Transaction not found" and return
         Transaction currentTransaction = manager.getTransactionByID(id);
         if (currentTransaction == null) {
             System.out.println("Transaction not found.");
             return;
         }
         
-        // TODO: Display current transaction details
+        // Display current transaction details
         System.out.println("\nCurrent transaction:");
         // Show the transaction
         System.out.println(currentTransaction);
 
         System.out.println("\nEnter new values (press Enter to keep current value):");
 
-        // TODO: Get new type (or keep current)
+        // Get new type (or keep current)
         System.out.print("Type [" + currentTransaction.getType() + "]: ");
         String newType = scanner.nextLine().trim();
         // If empty, use current value
@@ -245,7 +245,7 @@ public class Main {
             }
         }
         
-        // TODO: Get new amount (or keep current)
+        // Get new amount (or keep current)
         System.out.print("Amount [" + currentTransaction.getAmount() + "]: ");
         double newAmount;
 
@@ -273,7 +273,7 @@ public class Main {
             }
         }
 
-        // TODO: Get new category (or keep current)
+        // Get new category (or keep current)
         System.out.print("Category [" + currentTransaction.getCategory() + "]: ");
         String newCategory = scanner.nextLine().trim();
         if (newCategory.isEmpty()){
@@ -283,7 +283,7 @@ public class Main {
             newCategory = newCategory.substring(0,1).toUpperCase() + newCategory.substring(1).toLowerCase();
         }
 
-        // TODO: Get new description (or keep current)
+        // Get new description (or keep current)
         System.out.print("Description [" + currentTransaction.getDescription() + "]: ");
         String newDescription = scanner.nextLine().trim();
         if (newDescription.isEmpty()) {
@@ -291,13 +291,13 @@ public class Main {
             System.out.println("Keeping current Description.");
         }
 
-        // TODO: Create new Transaction with updated values
+        // Create new Transaction with updated values
         Transaction updatedTransaction = new Transaction(currentTransaction.getDate(), newAmount, newCategory, newDescription, newType);
 
-        // TODO: Call manager.updateTransaction(id, newTransaction)
+        // Call manager.updateTransaction(id, newTransaction)
         manager.updateTransaction(id, updatedTransaction);
 
-        // TODO: Print success/failure message
+        // Print success/failure message
         System.out.println("Successfully edited transaction.\n");
     }
 }

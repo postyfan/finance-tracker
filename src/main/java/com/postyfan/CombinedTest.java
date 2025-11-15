@@ -13,26 +13,26 @@ public class CombinedTest {
     public static void main(String[] args) {
         String filename = "test-transactions.json";
         
-        // TODO: Initialize Gson with pretty printing
+        // Initialize Gson with pretty printing
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).setPrettyPrinting().create();
         
         // PART 1: Create test transactions
         System.out.println("=== Creating test data ===");
         
-        // TODO: Create an ArrayList<Transaction>
+        // Create an ArrayList<Transaction>
         TransactionManager transactions = new TransactionManager();
-        // TODO: Add 2-3 test transactions with different data
+        // Add 2-3 test transactions with different data
         transactions.addTransaction(new Transaction(LocalDateTime.now(), 100, "Electronics","Apple Charger", "Expense"));
         transactions.addTransaction(new Transaction(LocalDateTime.now(), 9.82, "Food","Bubble Tea", "Expense"));
         transactions.addTransaction(new Transaction(LocalDateTime.now(), 432, "Paycheck","Cineplex Paycheck", "Income"));
-        // TODO: Print how many transactions you created
+        // Print how many transactions you created
         List<Transaction> t = transactions.getAllTransactions();
         System.out.println("Number of transactions: " + t.size());
 
         // PART 2: Save to file
         System.out.println("\n=== Saving to JSON file ===");
         
-        // TODO: Use try-with-resources with FileWriter
+        // Use try-with-resources with FileWriter
         // Inside try block:
         //   1. Convert transactions list to JSON string using gson.toJson()
         //   2. Write the JSON string to file using writer.write()
@@ -52,7 +52,7 @@ public class CombinedTest {
         // PART 3: Load from file
         System.out.println("\n=== Loading from JSON file ===");
         
-        // TODO: Use try-with-resources with BufferedReader
+        // Use try-with-resources with BufferedReader
         // Inside try block:
         //   1. Create a StringBuilder to build the full JSON string
         //   2. Loop through file line by line (like in Exercise 2)

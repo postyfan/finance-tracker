@@ -15,12 +15,12 @@ import com.google.gson.JsonObject;
 
 public class GsonTest {
     public static void main(String[] args) {
-        // TODO: Initialize Gson with pretty printing
+        // Initialize Gson with pretty printing
         // Hint: Use GsonBuilder().setPrettyPrinting().create()
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).setPrettyPrinting().create();
         
         
-        // TODO: Create a test transaction
+        // Create a test transaction
         // Use your Transaction constructor with:
         // - LocalDateTime.now() for date
         // - amount: 50.0
@@ -30,17 +30,17 @@ public class GsonTest {
         Transaction t = new Transaction(LocalDateTime.now(), 50.0, "Food", "Lunch at cafeteria", "Expense");
         
         
-        // TODO: Convert single transaction to JSON string
+        // Convert single transaction to JSON string
         // Hint: Use gson.toJson(transaction)
         // Store in a String variable
         String json = gson.toJson(t);
         
         
         System.out.println("=== Single Transaction as JSON ===");
-        // TODO: Print the JSON string
+        // Print the JSON string
         System.out.println(json);    
     
-        // TODO: Create a List<Transaction> and add 2 transactions to it
+        // Create a List<Transaction> and add 2 transactions to it
         // Transaction 1: The one you created above
         // Transaction 2: Create a new one with different values
         TransactionManager transactions = new TransactionManager();
@@ -48,16 +48,16 @@ public class GsonTest {
         transactions.addTransaction(new Transaction(LocalDateTime.now(), 100.0, "Clothing", "Sweater from Hollister", "Expense"));
         
         
-        // TODO: Convert the entire list to JSON string
+        // Convert the entire list to JSON string
         // Hint: gson.toJson() works on lists too!
         String json2 = gson.toJson(transactions.getAllTransactions());
         
         
         System.out.println("\n=== List of Transactions as JSON ===");
-        // TODO: Print the list JSON
+        // Print the list JSON
         System.out.println(json2);
         
-        // TODO: Convert JSON string back to List<Transaction>
+        // Convert JSON string back to List<Transaction>
         // This is the tricky part! You need TypeToken:
         // Type listType = new TypeToken<ArrayList<Transaction>>(){}.getType();
         // Then use: gson.fromJson(jsonString, listType)
@@ -65,7 +65,7 @@ public class GsonTest {
         ArrayList<Transaction> loadedTransactions= gson.fromJson(json2, listType);
         
         System.out.println("\n=== Loaded Back from JSON ===");
-        // TODO: Loop through the loaded list and print each transaction's description and amount
+        // Loop through the loaded list and print each transaction's description and amount
         for (int i = 0; i < loadedTransactions.size(); i++)
             System.out.println(loadedTransactions.get(i));
     }
